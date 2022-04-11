@@ -20,7 +20,8 @@
 </head>
 
 <!-- fijar-body -->
-<body class="body ">
+
+<body class="body">
     <!-- <style>
     .loader {
         position: fixed;
@@ -60,7 +61,7 @@
     <!-- Loading HTML -->
     <div class="loader show">
         <div class="spin"></div>
-    </div> 
+    </div>
 
     <header class="header ">
 
@@ -77,22 +78,22 @@
 
                             <div class="enlace-navegacion">
                                 <a class="nav-hijos" href="/">Inicio</a>
-                                <div class="l"></div>
+
                             </div>
 
                             <div class="enlace-navegacion">
                                 <a class="nav-hijos" href="/proyectos">Proyectos</a>
-                                <div class="l"></div>
+
                             </div>
 
                             <div class="enlace-navegacion">
                                 <a class="nav-hijos" href="/sobre_mi">Sobre mi</a>
-                                <div class="l"></div>
+
                             </div>
 
                             <div class="enlace-navegacion">
                                 <a class="nav-hijos" href="/contacto">Contacto</a>
-                                <div class="l"></div>
+
                             </div>
 
 
@@ -100,9 +101,19 @@
                         </nav>
                     </div>
                 </div>
-                <div class="iconos-nav">
+                <div class="flex-centrar iconos-nav">
 
+                    <!-- Modo oscuro -->
+                    <div class="btn-modo-oscuro ">
+                        <div class="sun sun-logo">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="moon moon-logo">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                    </div>
 
+                    <!-- Menu hamburguesa -->
                     <div id="menu-toggle">
                         <div id="hamburger">
                             <span class="span"></span>
@@ -114,6 +125,9 @@
                             <span class="span"></span>
                         </div>
                     </div>
+
+
+
 
                 </div>
 
@@ -134,8 +148,8 @@
     <?php echo $contenido; ?>
 
 
-    <footer class="footer seccion flex-centrar">
-        <p>Ari Gómez <?php echo date('Y'); ?> </p>
+    <footer class="footer flex-centrar">
+        <p>Sitio Oficial de Ari Gómez <?php echo date('Y'); ?> </p>
     </footer>
 
     <script type="text/javascript" src="/build/js/app.js"></script>

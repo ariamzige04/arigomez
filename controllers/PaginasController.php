@@ -2,7 +2,7 @@
 
 namespace Controllers;
 use MVC\Router;
-use Model\Compu;
+// use Model\Compu;
 // use Model\N_compu;
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -11,75 +11,40 @@ class PaginasController {
     public static function index( Router $router ) {
             
         $router->render('paginas/index', [
-            'footer' => false,
             'descripcion' =>  "",
-            'title' => "Computadoras Automotrices | Inicio ",
-            'contador' => true,
-            'animacion' => true
+            'title' => "Ari Gómez | Inicio ",
+
+
+        ]);
+    }
+
+    public static function proyectos( Router $router ) {
+            
+        $router->render('paginas/proyectos', [
+            'descripcion' =>  "",
+            'title' => "Ari Gómez | Proyectos ",
+
+
+        ]);
+    }
+
+    public static function sobre_mi( Router $router ) {
+            
+        $router->render('paginas/sobre_mi', [
+            'descripcion' =>  "",
+            'title' => "Ari Gómez | Sobre_mi ",
+
 
         ]);
     }
 
     
-
-     public static function tienda_en_linea( Router $router ) {
-
-         $computadoras = Compu::all();
-        //   $nombre_compu = N_compu::all();
-        //   $compu_datos = false;
-
-         $router->render('paginas/tienda_en_linea', [
-            'computadoras' => $computadoras,
-        //   'nombre_compu' => $nombre_compu,
-            'footer' => false,
-            'descripcion' => "Venta de computadoras automotrices como Nissan, Ford, Chevrolet, Dodge, Chrysler, Jeep y entre otras marcas.",
-            'title' => "Computadoras Automotrices | Tienda en Línea",
-            // 'compu_datos' => false,
-            'buscador_filtrar_img_lazy' => true,
-            'animacion' => true
-
-
-         ]);
-     }
-
-     public static function compu(Router $router) {
-         $id = validarORedireccionar('/tienda_en_linea');
-        //   $compu_datos = true;
-        //   Obtener los datos de la compu
-         $compu = Compu::find($id);
-        
-         $router->render('paginas/compu', [
-            'compu' => $compu,
-            'footer' => false,
-            'descripcion' => false,
-            'title' => false,
-            'compu_datos' => true,
-            'animacion' => true
-
-
-         ]);
-     }
-
-    //  public static function pago_finalizado(Router $router) {
-       
-       
-    //     $router->render('paginas/pago_finalizado', [
-    //         'footer' => false,
-    //         'descripcion' => "hola pago_finalizado",
-    //         'title' => "| Pago Finalizado"
-
-
-    //     ]);
-    // }
-
     public static function pagina_no_encontrada( Router $router ) {
             
         $router->render('paginas/pagina_no_encontrada', [
-            'footer' => false,
             'descripcion' =>  "Página no encontrada, error 404",
-            'title' => "Página no encontrada (404) | Computadoras Automotrices",
-            'contador' => true,
-            'animacion' => true,
+            'title' => "Página no encontrada (404) | Ari Gómez",
+
 
         ]);
     }
@@ -105,16 +70,16 @@ class PaginasController {
             //  $mail->SMTPSecure = 'tls';
             //  $mail->Port = 2525;
 
-            $mail->Host = 'p3plzcpnl491158.prod.phx3.secureserver.net';
+            $mail->Host = 'p3plzcpnl489529.prod.phx3.secureserver.net';
             $mail->SMTPAuth = true;
-            $mail->Username = 'admin@computadorasautomotrices.com.mx';
-            $mail->Password = '[rR}qE(K*yF3';
+            $mail->Username = 'arigomez@ecutroniccomputadorasautomotrices.com';
+            $mail->Password = '+ga2fOMgL@)w';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
 
             //  configurar el contenido del email
-             $mail->setFrom('cliente@computadorasautomotrices.com.mx', $respuestas['nombre']);//quien envia elemail setFrom
-             $mail->addAddress('admin@computadorasautomotrices.com.mx', 'computadorasautomotrices.com.mx');//que email va a llegar ese correo addAddres (la direccion donde se va a recibir) (quien lo recibe...)
+             $mail->setFrom('clientesari@ecutroniccomputadorasautomotrices.com', $respuestas['nombre']);//quien envia elemail setFrom
+             $mail->addAddress('arigomez@ecutroniccomputadorasautomotrices.com', 'computadorasautomotrices.com.mx');//que email va a llegar ese correo addAddres (la direccion donde se va a recibir) (quien lo recibe...)
              $mail->Subject = 'Tienes un Nuevo Correo';
 
             //   Set HTML 
@@ -134,6 +99,18 @@ class PaginasController {
 
              $contenido .= "<p>Su teléfono es: " .  $respuestas['telefono'] ." </p>";
 
+             $contenido .= "<p>El nombre de su negocio es: " .  $respuestas['negocio'] ." </p>";
+
+             if($respuestas['sitio-cuentas'] === 'si') {
+                $contenido .= "<p>Si tiene sitio web</p>";
+                $contenido .= "<p>Su dominio es: " .  $respuestas['sitio'] ." </p>";
+               
+            } else {
+                $contenido .= "<p>No tiene sitio web</p>";
+            }
+
+             $contenido .= "<p>Su presupuesto es: " .  $respuestas['presupuesto'] ." </p>";
+
              $contenido .= "<p>Mensaje: " . $respuestas['mensaje'] . "</p>";
 
              $contenido .= '</html>';
@@ -147,17 +124,15 @@ class PaginasController {
              if(!$mail->send()){
                  $mensaje = 'Hubo un Error... intente de nuevo';
              } else {
-                 $mensaje = 'Mensaje enviado Correctamente';
+                 $mensaje = true;
              }
 
          }
         
          $router->render('paginas/contacto', [
-             'mensaje' => $mensaje,
-             'footer' => false,
-             'descripcion' => "Ofrecemos un servicio automotriz profesional, calificado y honesto al mejor precio. Pregunta por la computadora automotriz que estás buscando. Comunícate por las siguientes redes sociales, estaremos a su servicio.",
-             'title' => "Computadoras Automotrices | Contacto",
-            'animacion' => true
+            'mensaje' => $mensaje,
+            'descripcion' =>  "",
+            'title' => "Ari Gómez | Contacto ",
 
 
 

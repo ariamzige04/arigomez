@@ -4,9 +4,12 @@ require_once __DIR__ . '/../includes/app.php';
 
 
 use MVC\Router;
+
 // use Controllers\CompuController;
 // use Controllers\NombreCompuController;
+
 use Controllers\PaginasController;
+
 // use Controllers\LoginController;
 
 $router = new Router();
@@ -30,7 +33,10 @@ $router = new Router();
 
 //Zona publica
 $router->get('/', [PaginasController::class, 'index']);
-$router->get('/', [PaginasController::class, 'index']);
+$router->get('/proyectos', [PaginasController::class, 'proyectos']);
+$router->get('/sobre_mi', [PaginasController::class, 'sobre_mi']);
+
+
 $router->get('/contacto', [PaginasController::class, 'contacto']);
 $router->post('/contacto', [PaginasController::class, 'contacto']);
 $router->get('/pagina_no_encontrada', [PaginasController::class, 'pagina_no_encontrada']);
